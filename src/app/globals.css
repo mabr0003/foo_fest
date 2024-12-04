@@ -1,21 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Barrio&family=Bayon&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  --background: linear-gradient(180deg, rgba(185, 255, 242, 1) 0%, rgba(255, 255, 255, 1) 100%);
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   color: var(--foreground);
   background: var(--background);
+  background-repeat: no-repeat;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-family: "Barrio", system-ui;
+  font-size: 3rem;
+}
+
+h2 {
+  font-family: "Barrio", system-ui;
+}
+
+.bayon {
+  font-family: "Bayon", sans-serif;
+}
+
+p {
+  font-family: "Lato", sans-serif;
 }
