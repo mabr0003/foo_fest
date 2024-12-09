@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { getBands, getSchedule } from "@/lib/api";
 import Link from "next/link";
+import "./footer.css";
+import Footer from "./components/Footer";
 
 export default function Home() {
   const [bands, setBands] = useState([]);
@@ -43,6 +45,27 @@ export default function Home() {
 
   return (
     <div>
+      <section className="grid grid-cols-4 h-svh mb-28">
+        <img src="/img1.png" alt="hero_img" className="h-full col-start-1 col-end-5 row-start-1 object-cover" />
+
+        <img src="/img2.png" alt="logo" className="col-start-1 row-start-1 w-36 h-36 z-20" />
+
+        <div className="flex flex-col justify-center text-center col-start-2 col-end-4 row-start-1 text-white">
+          <h1 className="text-5xl font-bold">Asgaards drømme</h1>
+          <p className="text-lg mt-4">En uforglemmelig oplevelse fyldt med musik, fællesskab og magiske øjeblikke!</p>
+        </div>
+        <div className="col-start-1 col-end-5 row-start-1 self-end flex justify-between py-5 px-10 bayon">
+          <a href="#" className="text-white font-bold text-lg hover:text-gray-300">
+            FORSIDE
+          </a>
+          <a href="#" className="text-white font-bold text-lg hover:text-gray-300">
+            BILLETTER
+          </a>
+          <a href="#" className="text-white font-bold text-lg hover:text-gray-300">
+            OM OS
+          </a>
+        </div>
+      </section>
       <main>
         <section className="line_ups">
           <div className="mb-10 grid">
@@ -94,6 +117,7 @@ export default function Home() {
           </div>
         </section>
       </main>
+      <Footer></Footer>
     </div>
   );
 }
