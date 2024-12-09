@@ -2,8 +2,7 @@
 import { useState, useEffect } from "react";
 import { getBands, getSchedule } from "@/lib/api";
 import Link from "next/link";
-import "./footer.css";
-import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 export default function Home() {
   const [bands, setBands] = useState([]);
@@ -54,17 +53,7 @@ export default function Home() {
           <h1 className="text-5xl font-bold">Asgaards drømme</h1>
           <p className="text-lg mt-4">En uforglemmelig oplevelse fyldt med musik, fællesskab og magiske øjeblikke!</p>
         </div>
-        <div className="col-start-1 col-end-5 row-start-1 self-end flex justify-between py-5 px-10 bayon">
-          <a href="#" className="text-white font-bold text-lg hover:text-gray-300">
-            FORSIDE
-          </a>
-          <a href="#" className="text-white font-bold text-lg hover:text-gray-300">
-            BILLETTER
-          </a>
-          <a href="#" className="text-white font-bold text-lg hover:text-gray-300">
-            OM OS
-          </a>
-        </div>
+        <Header />
       </section>
       <main>
         <section className="line_ups">
@@ -117,7 +106,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <Footer></Footer>
     </div>
   );
 }

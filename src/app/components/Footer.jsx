@@ -1,6 +1,3 @@
-import "../globals.css";
-import "../footer.css";
-
 const Footer = () => {
   return (
     <footer className="flex justify-between mx-[150px] my-[10px]">
