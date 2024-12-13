@@ -4,7 +4,7 @@ const Header = () => {
       <a href="#" className="text-white font-bold text-lg hover:text-gray-300">
         FORSIDE
       </a>
-      <a href="#" className="text-white font-bold text-lg hover:text-gray-300">
+      <a href="/tickets" className="text-white font-bold text-lg hover:text-gray-300">
         BILLETTER
       </a>
       <a href="#" className="text-white font-bold text-lg hover:text-gray-300">
