@@ -57,14 +57,11 @@ export async function reserveSpots(area, amount) {
   const data = await response.json();
   return data;
 }
-export async function postGuests(subdata, reservationId) {
+export async function postGuests(subdata) {
   const response = await fetch(supaUrl + "/guests", {
     method: "POST",
     headers: headersList,
-    body: JSON.stringify({
-      ...subdata,
-      reservationId: reservationId,
-    }),
+    body: JSON.stringify(subdata),
   });
 
   const data = await response.json();

@@ -1,4 +1,3 @@
-"use server";
 import { postGuests } from "@/lib/api";
 
 export async function sendData(guestInfo, reservationId) {
@@ -6,8 +5,8 @@ export async function sendData(guestInfo, reservationId) {
     firstname: guest.firstname,
     lastname: guest.lastname,
     email: guest.email,
-    reservationId: reservationId,
+    reservationid: reservationId,
   }));
 
-  await postGuests(data, reservationId);
+  await postGuests(data);
 }
