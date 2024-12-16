@@ -88,7 +88,7 @@ const TicketSystem = () => {
 
       {currentStep === 3 && (
         <section>
-          <GuestInfo handleNextClick={handleNextClick} handleBackClick={handleBackClick} />
+          <GuestInfo handleNextClick={handleNextClick} handleBackClick={handleBackClick} reservationId={reservationId} />
           <div className="mt-4">
             {timer > 0 ? (
               <p>

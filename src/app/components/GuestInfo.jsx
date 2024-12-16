@@ -3,7 +3,7 @@ import { useState } from "react";
 import useTicketStore from "../state/store";
 import { sendData } from "@/lib/actions";
 
-const GuestInfo = ({ handleNextClick, handleBackClick }) => {
+const GuestInfo = ({ handleNextClick, handleBackClick, reservationId }) => {
   const { vipTickets, regularTickets } = useTicketStore();
   const totalGuests = vipTickets + regularTickets;
 
@@ -17,7 +17,7 @@ const GuestInfo = ({ handleNextClick, handleBackClick }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await sendData(guestInfo);
+    await sendData(guestInfo, reservationId);
     handleNextClick();
   };
 
