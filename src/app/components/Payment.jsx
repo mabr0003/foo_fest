@@ -1,4 +1,5 @@
-const Payment = () => {
+import Receipt from "./Receipt";
+const Payment = ({ handleNextClick }) => {
   return (
     <div>
       <form>
@@ -18,10 +19,13 @@ const Payment = () => {
           CVC
           <input type="email" className="border p-2 rounded w-full" />
         </label>
-        <button type="submit" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
-          Submit
-        </button>
       </form>
+      <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded" onClick={handleNextClick}>
+        Finish
+      </button>
+      <div>
+        <Receipt />
+      </div>
     </div>
   );
 };

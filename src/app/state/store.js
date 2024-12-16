@@ -7,6 +7,13 @@ const useTicketStore = create((set) => ({
   VipPrice: 1299,
   RegularPrice: 799,
   totalPrice: 0,
+  reservation: 99,
+  goGreen: false,
+
+  toggleGoGreen: () =>
+    set((state) => ({
+      goGreen: !state.goGreen,
+    })),
 
   // Ticket Actions
   increaseTicket: (type) =>

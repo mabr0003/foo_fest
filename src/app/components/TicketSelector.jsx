@@ -1,8 +1,8 @@
 "use client";
 import useTicketStore from "../state/store";
 
-const TicketSelector = () => {
-  const { vipTickets, regularTickets, totalPrice, increaseTicket, decreaseTicket } = useTicketStore();
+const TicketSelector = ({ handleNextClick }) => {
+  const { vipTickets, regularTickets, increaseTicket, decreaseTicket } = useTicketStore();
 
   return (
     <div>
@@ -24,7 +24,9 @@ const TicketSelector = () => {
         </div>
       </div>
       <div>
-        <h3>Total Price: {totalPrice},-</h3>
+        <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded" onClick={handleNextClick}>
+          Next
+        </button>
       </div>
     </div>
   );

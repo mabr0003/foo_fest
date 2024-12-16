@@ -1,13 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import useTicketStore from "../state/store";
-import { getAvailableSpots, reserveSpot } from "@/lib/api";
+import { getAvailableSpots } from "@/lib/api";
+import GoGreen from "./GoGreen";
 
-const CampingSelector = () => {
-  const { vipTickets, regularTickets, tentPrices, increaseTent, decreaseTent, totalTentPrice, selectedSpot, selectSpot, twoPersonTentCount, threePersonTentCount } = useTicketStore();
-
-  const totalTickets = vipTickets + regularTickets;
-  const totalTentCapacity = twoPersonTentCount * 2 + threePersonTentCount * 3;
+const CampingSelector = ({ handleNextClick, handleBackClick }) => {
+  const { tentPrices, increaseTent, decreaseTent, selectedSpot, selectSpot, twoPersonTentCount, threePersonTentCount } = useTicketStore();
 
   const [spots, setSpots] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,6 +23,7 @@ const CampingSelector = () => {
   return (
     <div>
       <h1 className="text-center">Vælg Campingområde</h1>
+      <GoGreen />
       {loading ? (
         <p>Loading camping spots...</p>
       ) : (
@@ -32,9 +31,7 @@ const CampingSelector = () => {
           {spots.map((spot) => (
             <button key={spot.area} className={`px-4 py-2 rounded flex flex-col ${selectedSpot?.area === spot.area ? "bg-green-500" : "bg-gray-200"}`} onClick={() => selectSpot(spot)}>
               <span>{spot.area}</span>
-              <span>
-                {spot.available} ud af {spot.spots} pladser tilbage
-              </span>
+              <span>{spot.available === 0 ? "UDSOLGT" : `${spot.available} ud af ${spot.spots} pladser tilbage`}</span>
             </button>
           ))}
         </div>
@@ -62,10 +59,12 @@ const CampingSelector = () => {
       </div>
 
       <div>
-        <h3>
-          Total Tent Capacity: {totalTentCapacity} / {totalTickets} tickets
-        </h3>
-        <h3>Total Tent Cost: {totalTentPrice},-</h3>
+        <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded" onClick={handleNextClick}>
+          Next
+        </button>
+        <button className="px-4 py-2 bg-gray-500 text-white rounded" onClick={handleBackClick}>
+          Back
+        </button>
       </div>
     </div>
   );

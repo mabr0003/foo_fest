@@ -3,7 +3,7 @@ import { useState } from "react";
 import useTicketStore from "../state/store";
 import { sendData } from "@/lib/actions";
 
-const GuestInfo = () => {
+const GuestInfo = ({ handleNextClick, handleBackClick }) => {
   const { vipTickets, regularTickets } = useTicketStore();
   const totalGuests = vipTickets + regularTickets;
 
@@ -15,11 +15,11 @@ const GuestInfo = () => {
     setGuestInfo(updatedGuestInfo);
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Send all guest data to Supabase
-    await sendData(guestInfo); // Pass guestInfo directly to sendData function
+
+    await sendData(guestInfo);
+    handleNextClick();
   };
 
   return (
@@ -45,9 +45,14 @@ const GuestInfo = () => {
             </div>
           </div>
         ))}
-        <button type="submit" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
-          Submit
-        </button>
+        <div>
+          <button type="submit" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
+            Next
+          </button>
+          <button className="px-4 py-2 bg-gray-500 text-white rounded" onClick={handleBackClick}>
+            Back
+          </button>
+        </div>
       </form>
     </div>
   );
