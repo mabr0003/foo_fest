@@ -17,7 +17,6 @@ const GuestInfo = ({ handleNextClick, handleBackClick }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     await sendData(guestInfo);
     handleNextClick();
   };

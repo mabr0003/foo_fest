@@ -5,14 +5,14 @@ import CampingSelector from "../components/CampingSelector";
 import GuestInfo from "../components/GuestInfo";
 import Payment from "../components/Payment";
 import ReservationComplete from "./ReservationComplete";
-import { reserveSpot, fullfillReservation } from "@/lib/api"; // Import fullfillReservation
+import { reserveSpot, fullfillReservation } from "@/lib/api";
 import useTicketStore from "../state/store";
 
 const TicketSystem = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [timer, setTimer] = useState(null);
   const [timerStarted, setTimerStarted] = useState(false);
-  const [reservationId, setReservationId] = useState(null); // Store reservation ID
+  const [reservationId, setReservationId] = useState(null);
 
   const { selectedSpot, vipTickets, regularTickets } = useTicketStore();
   const totalTickets = vipTickets + regularTickets;
