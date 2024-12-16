@@ -19,6 +19,7 @@ export default function BandPage() {
   const { slug } = useParams();
   const [band, setBand] = useState(null);
   const [schedule, setSchedule] = useState(null);
+  const [isFavorite, setIsFavorite] = useState(false); // For at holde styr på om bandet er favorit
 
   useEffect(() => {
     async function fetchData() {
@@ -27,6 +28,11 @@ export default function BandPage() {
         const scheduleData = await getSchedule();
         setBand(bandData);
         setSchedule(scheduleData);
+
+        // Tjek om bandet allerede er i favoritter
+        const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        const isBandFavorite = favorites.some((fav) => fav.slug === bandData.slug);
+        setIsFavorite(isBandFavorite);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -34,6 +40,24 @@ export default function BandPage() {
 
     fetchData();
   }, [slug]);
+
+  const handleToggleFavorite = () => {
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    if (isFavorite) {
+      // Hvis bandet allerede er en favorit, fjern det
+      favorites = favorites.filter((fav) => fav.slug !== band.slug);
+    } else {
+      // Hvis bandet ikke er en favorit, tilføj det
+      favorites.push(band);
+    }
+
+    // Gem de opdaterede favoritter i localStorage
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+
+    // Opdater favorite status
+    setIsFavorite(!isFavorite);
+  };
 
   if (!band || !schedule) {
     return <div>Loading...</div>;
@@ -59,18 +83,25 @@ export default function BandPage() {
   }
 
   return (
-    <div>
-      <h1>{band.name}</h1>
+    <div className="grid grid-cols-2 p-20">
       <div>
-        <ul>
-          {playingDays.map((day, index) => (
-            <li key={index}>{day}</li>
-          ))}
-        </ul>
+        <h1>{band.name}</h1>
+        <div>
+          <ul>
+            {playingDays.map((day, index) => (
+              <li key={index}>{day}</li>
+            ))}
+          </ul>
+        </div>
+        <span>Genre: {band.genre}</span>
+        <p className="mt-6 w-2/3">{band.bio}</p>
+
+        {/* Knappen til at tilføje til/fjerne fra favoritter */}
+        <button onClick={handleToggleFavorite} className={`mt-4 ${isFavorite ? "bg-red-500" : "bg-blue-500"} text-white px-4 py-2 rounded`}>
+          {isFavorite ? "Fjern fra favoritter" : "Føj til favoritter"}
+        </button>
       </div>
 
-      <span>Genre: {band.genre}</span>
-      <p>{band.bio}</p>
       <Image src={imageSrc} width={500} height={500} alt={`${band.name} logo`} />
     </div>
   );
