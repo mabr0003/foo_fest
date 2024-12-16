@@ -52,7 +52,6 @@ const useTicketStore = create((set) => ({
   tentPrices: { "2-person": 299, "3-person": 399 },
   totalTentPrice: 0,
 
-  // Actions
   selectSpot: (spot) => set({ selectedSpot: spot }),
 
   increaseTent: (type) =>
