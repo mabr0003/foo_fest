@@ -1,5 +1,5 @@
 import TicketSystem from "../components/TicketSystem";
-import Header from "../components/Header";
+
 import Hero from "../components/Hero";
 
 export default function Tickets() {

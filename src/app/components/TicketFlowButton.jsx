@@ -2,7 +2,7 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import { IoIosArrowRoundBack } from "react-icons/io";
 const TicketFlowButton = ({ handleClick, action }) => {
   return (
-    <button className="bayon text-xl border border-black rounded-lg px-5 flex items-center my-8" onClick={handleClick}>
+    <button className="bayon text-xl border border-black rounded-lg px-5 flex items-center my-8" type="button" onClick={handleClick}>
       {action.toLowerCase() === "tilbage" && (
         <span>
           <IoIosArrowRoundBack size={30} />
