@@ -34,10 +34,11 @@ export default function BandPage() {
         setBand(bandData);
         setSchedule(scheduleData);
 
-        // Check if the band is already in favorites
-        const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-        const isBandFavorite = favorites.some((fav) => fav.slug === bandData.slug);
-        setIsFavorite(isBandFavorite);
+        if (typeof window !== "undefined") {
+          const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+          const isBandFavorite = favorites.some((fav) => fav.slug === bandData.slug);
+          setIsFavorite(isBandFavorite);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -52,17 +53,18 @@ export default function BandPage() {
       return;
     }
 
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (typeof window !== "undefined") {
+      let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-    if (isFavorite) {
-      favorites = favorites.filter((fav) => fav.slug !== band.slug);
-    } else {
-      favorites.push(band);
+      if (isFavorite) {
+        favorites = favorites.filter((fav) => fav.slug !== band.slug);
+      } else {
+        favorites.push(band);
+      }
+
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      setIsFavorite(!isFavorite);
     }
-
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-
-    setIsFavorite(!isFavorite);
   };
 
   const imageSrc = band?.logo?.startsWith("https://") ? band.logo : `https://jade-aspiring-termite.glitch.me/logos/${band?.logo}`;

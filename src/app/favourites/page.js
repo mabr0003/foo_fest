@@ -9,8 +9,10 @@ export default function FavoritesPage() {
 
   useEffect(() => {
     // Hent gemte favoritter fra localStorage
-    const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    setFavorites(savedFavorites);
+    if (typeof window !== "undefined") {
+      const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+      setFavorites(savedFavorites);
+    }
   }, []);
 
   const removeFromFavorites = (slug) => {
@@ -19,7 +21,9 @@ export default function FavoritesPage() {
     setFavorites(updatedFavorites);
 
     // Opdater localStorage
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    }
   };
 
   if (favorites.length === 0) {
