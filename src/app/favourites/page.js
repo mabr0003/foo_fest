@@ -8,7 +8,7 @@ export default function FavoritesPage() {
   const router = useRouter();
 
   useEffect(() => {
-    // Hent gemte favoritter fra localStorage
+    // Safely access localStorage only on the client-side
     if (typeof window !== "undefined") {
       const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
       setFavorites(savedFavorites);
@@ -16,11 +16,10 @@ export default function FavoritesPage() {
   }, []);
 
   const removeFromFavorites = (slug) => {
-    // Filtrer bandet ud af favoritterne
     const updatedFavorites = favorites.filter((band) => band.slug !== slug);
     setFavorites(updatedFavorites);
 
-    // Opdater localStorage
+    // Update localStorage after modification
     if (typeof window !== "undefined") {
       localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     }

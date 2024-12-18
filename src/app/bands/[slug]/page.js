@@ -34,6 +34,7 @@ export default function BandPage() {
         setBand(bandData);
         setSchedule(scheduleData);
 
+        // Only access localStorage in the client-side
         if (typeof window !== "undefined") {
           const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
           const isBandFavorite = favorites.some((fav) => fav.slug === bandData.slug);
@@ -53,18 +54,24 @@ export default function BandPage() {
       return;
     }
 
+    let favorites = [];
+
+    // Ensure we only interact with localStorage on the client-side
     if (typeof window !== "undefined") {
-      let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-
-      if (isFavorite) {
-        favorites = favorites.filter((fav) => fav.slug !== band.slug);
-      } else {
-        favorites.push(band);
-      }
-
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-      setIsFavorite(!isFavorite);
+      favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     }
+
+    if (isFavorite) {
+      favorites = favorites.filter((fav) => fav.slug !== band.slug);
+    } else {
+      favorites.push(band);
+    }
+
+    if (typeof window !== "undefined") {
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
+
+    setIsFavorite(!isFavorite);
   };
 
   const imageSrc = band?.logo?.startsWith("https://") ? band.logo : `https://jade-aspiring-termite.glitch.me/logos/${band?.logo}`;
