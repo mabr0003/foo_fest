@@ -7,6 +7,7 @@ module.exports = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         accent: "var(--accent)",
+        trans: "var(--transparant-bg)",
       },
     },
   },

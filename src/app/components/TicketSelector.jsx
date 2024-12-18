@@ -38,10 +38,10 @@ const TicketSelector = ({ handleNextClick }) => {
             <TicketFlowButton handleClick={handleNext} action="Videre" />
           </div>
         </div>
-        <div className="bayon justify-self-end">
-          <h3>Hvad får du med?</h3>
+        <div className="bayon justify-self-end mt-8">
+          <h3 className="text-2xl">Hvad får du med?</h3>
           <div className="flex flex-col gap-2 mb-8 mt-3">
-            <h3>VIP</h3>
+            <h3 className="text-xl">VIP</h3>
             <p className="bayon">Alt fra regular-biletten plus:</p>
             <ul className="list-disc">
               <li>Adgang til eksklusiv VIP-lounge med komfortable siddepladser og privat bar</li>
@@ -55,7 +55,7 @@ const TicketSelector = ({ handleNextClick }) => {
             </ul>
           </div>
           <div className="flex flex-col gap-2">
-            <h3>Regular</h3>
+            <h3 className="text-xl">Regular</h3>
             <ul className="list-disc">
               <li>Adgang til festivalen alle dage</li>
               <li>Adgang til koncerter og aktiviteter</li>

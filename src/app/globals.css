@@ -7,6 +7,8 @@
   --background: linear-gradient(180deg, rgba(185, 255, 242, 1) 0%, rgba(255, 255, 255, 1) 100%);
   --foreground: #171717;
   --accent: #e8e1ef;
+  --text-color: #1b1b1b;
+  --transparant-bg: rgba(0, 0, 0, 0.336);
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -17,10 +19,8 @@
 } */
 
 body {
-  color: var(--foreground);
   background: var(--background);
-  background-repeat: no-repeat;
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-color);
 }
 
 main {
@@ -31,6 +31,11 @@ main {
     padding: 0 2rem;
   }
 }
+
+section {
+  margin: 2rem 0;
+}
+
 .band_list {
   display: flex;
   flex-wrap: wrap;
