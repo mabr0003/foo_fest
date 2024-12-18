@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import useLoginStore from "../state/login"; // Zustand store
 import LoginModal from "./LoginModal"; // Din LoginModal komponent
