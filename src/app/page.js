@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { getBands, getSchedule } from "@/lib/api";
 import Link from "next/link";
 import Header from "./components/Header";
+import LoginModal from "@/app/components/LoginModal";
 
 export default function Home() {
   const [bands, setBands] = useState([]);
@@ -44,15 +45,30 @@ export default function Home() {
 
   return (
     <div>
-      <section className="grid grid-cols-4 h-svh mb-28">
+      <section className="grid grid-cols-4 h-screen mb-28">
+        {/* Hero image */}
         <img src="/img1.png" alt="hero_img" className="h-full col-start-1 col-end-5 row-start-1 object-cover" />
 
-        <img src="/img2.png" alt="logo" className="col-start-1 row-start-1 w-36 h-36 z-20" />
-
-        <div className="flex flex-col justify-center text-center col-start-2 col-end-4 row-start-1 text-white">
+        {/* Content over hero image */}
+        <div className="flex flex-col justify-center text-center col-start-2 col-end-4 row-start-1 text-white z-10">
           <h1 className="text-5xl font-bold">Asgaards drømme</h1>
           <p className="text-lg mt-4">En uforglemmelig oplevelse fyldt med musik, fællesskab og magiske øjeblikke!</p>
         </div>
+
+        {/* Bottom navigation over the image */}
+        <div className="grid grid-cols-3 col-start-1 col-end-5 row-start-2 text-white text-center py-4 bg-black bg-opacity-40 z-20">
+          <a href="#" className="hover:text-gray-300">
+            FORSIDE
+          </a>
+          <a href="/tickets" className="hover:text-gray-300">
+            BILLETTER
+          </a>
+          <a href="#" className="hover:text-gray-300">
+            OM OS
+          </a>
+        </div>
+
+        {/* Top Navigation */}
         <Header />
       </section>
       <main>

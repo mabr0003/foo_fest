@@ -1,14 +1,17 @@
-"use client";
 import { useState } from "react";
+import useLoginStore from "../state/login"; // Importér Zustand store
 
-export default function LoginModal({ onLoginSuccess }) {
+export default function LoginModal({ onClose }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const setLogIn = useLoginStore((state) => state.setLogIn); // Brug setLogIn fra Zustand store
 
   const handleLogin = () => {
     if (username === "admin" && password === "password") {
-      onLoginSuccess(); // Kald onLoginSuccess når login er succesfuldt
+      setLogIn(); // Opdater login-statusen i Zustand
+      setError(""); // Nulstil fejlmeddelelsen
+      onClose(); // Luk modalvinduet ved at kalde onClose
     } else {
       setError("Forkert brugernavn eller kodeord");
     }
@@ -30,10 +33,7 @@ export default function LoginModal({ onLoginSuccess }) {
         <button onClick={handleLogin} className="bg-blue-500 text-white px-4 py-2 rounded">
           Log ind
         </button>
-        <button
-          onClick={() => setError("")} // Luk fejlmeddelelse
-          className="text-gray-500 mt-4"
-        >
+        <button onClick={onClose} className="text-gray-500 mt-4">
           Luk
         </button>
       </div>

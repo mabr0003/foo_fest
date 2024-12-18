@@ -1,8 +1,9 @@
 "use client";
 import { useState } from "react";
+import useLoginStore from "../state/login";
 
 export default function Login() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn] = useLoginStore();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -10,14 +11,13 @@ export default function Login() {
     e.preventDefault();
     // Her kan du tilføje validering eller API-kald til login
     if (username === "admin" && password === "password") {
-      setIsLoggedIn(true);
+      setLogIn();
     } else {
       alert("Forkert brugernavn eller kodeord!");
     }
   };
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
     setUsername("");
     setPassword("");
   };
