@@ -5,22 +5,23 @@ import { useRouter } from "next/navigation";
 
 export default function FavoritesPage() {
   const [favorites, setFavorites] = useState([]);
+  const [isClient, setIsClient] = useState(false); // Track if component has mounted
   const router = useRouter();
 
   useEffect(() => {
-    // Safely access localStorage only on the client-side
-    if (typeof window !== "undefined") {
+    setIsClient(true); // Set to true after the component mounts
+
+    if (isClient) {
       const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
       setFavorites(savedFavorites);
     }
-  }, []);
+  }, [isClient]);
 
   const removeFromFavorites = (slug) => {
     const updatedFavorites = favorites.filter((band) => band.slug !== slug);
     setFavorites(updatedFavorites);
 
-    // Update localStorage after modification
-    if (typeof window !== "undefined") {
+    if (isClient) {
       localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     }
   };

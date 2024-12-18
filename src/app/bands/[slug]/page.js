@@ -24,9 +24,12 @@ export default function BandPage() {
   const [schedule, setSchedule] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [isClient, setIsClient] = useState(false); // New state to track client-side rendering
   const { isLoggedIn } = useLoginStore();
 
   useEffect(() => {
+    setIsClient(true); // This will ensure that localStorage is only used after mounting
+
     async function fetchData() {
       try {
         const bandData = await getSingleBand(slug);
@@ -34,8 +37,7 @@ export default function BandPage() {
         setBand(bandData);
         setSchedule(scheduleData);
 
-        // Only access localStorage in the client-side
-        if (typeof window !== "undefined") {
+        if (isClient) {
           const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
           const isBandFavorite = favorites.some((fav) => fav.slug === bandData.slug);
           setIsFavorite(isBandFavorite);
@@ -46,7 +48,7 @@ export default function BandPage() {
     }
 
     fetchData();
-  }, [slug]);
+  }, [slug, isClient]);
 
   const handleToggleFavorite = () => {
     if (!isLoggedIn) {
@@ -56,8 +58,7 @@ export default function BandPage() {
 
     let favorites = [];
 
-    // Ensure we only interact with localStorage on the client-side
-    if (typeof window !== "undefined") {
+    if (isClient) {
       favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     }
 
@@ -67,7 +68,7 @@ export default function BandPage() {
       favorites.push(band);
     }
 
-    if (typeof window !== "undefined") {
+    if (isClient) {
       localStorage.setItem("favorites", JSON.stringify(favorites));
     }
 
