@@ -51,7 +51,7 @@ const GuestInfo = ({ handleNextClick, handleBackClick, reservationId }) => {
         ))}
         <div className="flex justify-self-center gap-5">
           <TicketFlowButton handleClick={handleBackClick} action="Tilbage" />
-          <TicketFlowButton handleClick={handleNextClick} action="Videre" />
+          <TicketFlowButton handleClick={handleSubmit} action="Videre" />
         </div>
       </form>
     </div>
