@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="flex justify-between mx-[150px] my-[10px]">
+    <footer className="flex justify-between mx-4 my-[10px]">
       <div className="flex flex-col">
         <a href="" className="font-bold text-xl">
           Forside

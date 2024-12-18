@@ -31,12 +31,12 @@ const Header = () => {
   return (
     <div>
       <div className="fixed top-0 left-0 w-full bg-white shadow-md z-50 flex justify-between items-center px-4 h-28">
-        <img src="/img2.png" alt="logo" className="col-start-1 row-start-1 w-36 h-36 z-20" />
+        <img src="/img2.png" alt="logo" className="col-start-1 row-start-1 w-28 h-28 z-20" />
 
-        <div className="flex space-x-4">
+        <div className="flex space-x-12">
           {/* Link til favoritter */}
-          <a href="/favourites" className="text-black font-bold text-lg hover:text-gray-300" onClick={handleFavoriteClick}>
-            FAVORITTER
+          <a href="/favourites" className="flex items-center text-black font-normal text-lg hover:text-gray-300" onClick={handleFavoriteClick}>
+            Favoritter
           </a>
 
           {/* Knap til login eller sign-out afhængig af login-status */}
