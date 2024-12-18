@@ -22,7 +22,7 @@ const Hero = ({ header, text }) => {
         <a href="/tickets" className={`hover:text-gray-300 ${isActive("/tickets") ? "underline" : ""}`}>
           BILLETTER
         </a>
-        <a href="/about" className={`hover:text-gray-300 ${isActive("/about") ? "underline" : ""}`}>
+        <a href="#" className="hover:text-gray-300">
           OM OS
         </a>
       </div>
