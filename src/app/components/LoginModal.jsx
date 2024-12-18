@@ -30,12 +30,14 @@ export default function LoginModal({ onClose }) {
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="border p-2 w-full" />
         </div>
         {error && <p className="text-red-500 mb-4">{error}</p>}
-        <button onClick={handleLogin} className="bg-blue-500 text-white px-4 py-2 rounded">
-          Log ind
-        </button>
-        <button onClick={onClose} className="text-gray-500 mt-4">
-          Luk
-        </button>
+        <div className="flex justify-between">
+          <button onClick={handleLogin} className="bg-blue-500 text-white px-4 py-2 rounded">
+            Log ind
+          </button>
+          <button onClick={onClose} className="text-gray-500">
+            Luk
+          </button>
+        </div>
       </div>
     </div>
   );
