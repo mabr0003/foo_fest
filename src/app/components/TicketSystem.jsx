@@ -74,6 +74,19 @@ const TicketSystem = () => {
 
   return (
     <div>
+      <div className={timer > 0 && currentStep !== 5 ? `border-2 border-black px-5 py-5 justify-self-start` : ""}>
+        {timer > 0 && currentStep !== 5 ? (
+          <p className="">
+            Du har{" "}
+            <span className="bayon">
+              {Math.floor(timer / 60)}:{String(timer % 60).padStart(2, "0")}
+            </span>{" "}
+            til at færdiggøre din reservation
+          </p>
+        ) : (
+          ""
+        )}
+      </div>
       {currentStep === 1 && (
         <section>
           <TicketSelector handleNextClick={handleNextClick} />
@@ -89,21 +102,12 @@ const TicketSystem = () => {
       {currentStep === 3 && (
         <section>
           <GuestInfo handleNextClick={handleNextClick} handleBackClick={handleBackClick} reservationId={reservationId} />
-          <div className="mt-4">
-            {timer > 0 ? (
-              <p>
-                Time remaining: {Math.floor(timer / 60)}:{String(timer % 60).padStart(2, "0")}
-              </p>
-            ) : (
-              <p>Time's up! Please finish your reservation.</p>
-            )}
-          </div>
         </section>
       )}
 
       {currentStep === 4 && (
         <section>
-          <Payment handleNextClick={handleNextClick} />
+          <Payment handleNextClick={handleNextClick} handleBackClick={handleBackClick} />
         </section>
       )}
 

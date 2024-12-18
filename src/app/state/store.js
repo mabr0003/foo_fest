@@ -1,7 +1,6 @@
 import { create } from "zustand";
 
 const useTicketStore = create((set) => ({
-  // Ticket state
   vipTickets: 0,
   regularTickets: 0,
   VipPrice: 1299,
@@ -15,7 +14,6 @@ const useTicketStore = create((set) => ({
       goGreen: !state.goGreen,
     })),
 
-  // Ticket Actions
   increaseTicket: (type) =>
     set((state) => {
       if (type === "VIP") {
@@ -52,7 +50,6 @@ const useTicketStore = create((set) => ({
       return { ...state };
     }),
 
-  // Camping state
   selectedSpot: null,
   twoPersonTentCount: 0,
   threePersonTentCount: 0,

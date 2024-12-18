@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useTicketStore from "../state/store";
 import { getAvailableSpots } from "@/lib/api";
 import GoGreen from "./GoGreen";
+import TicketFlowButton from "./TicketFlowButton";
 
 const CampingSelector = ({ handleNextClick, handleBackClick }) => {
   const { tentPrices, increaseTent, decreaseTent, selectedSpot, selectSpot, twoPersonTentCount, threePersonTentCount } = useTicketStore();
@@ -21,50 +22,58 @@ const CampingSelector = ({ handleNextClick, handleBackClick }) => {
   }, []);
 
   return (
-    <div>
+    <div className="grid">
       <h1 className="text-center">Vælg Campingområde</h1>
-      <GoGreen />
+      <div className="justify-self-center my-4">
+        <GoGreen />
+      </div>
+
       {loading ? (
         <p>Loading camping spots...</p>
       ) : (
-        <div className="flex flex-wrap gap-4">
-          {spots.map((spot) => (
-            <button key={spot.area} className={`px-4 py-2 rounded flex flex-col ${selectedSpot?.area === spot.area ? "bg-green-500" : "bg-gray-200"}`} onClick={() => selectSpot(spot)}>
+        <div className="bayon flex flex-col md:grid grid-cols-5 gap-5">
+          {spots.map((spot, index) => (
+            <button
+              key={spot.area}
+              className={`w-full py-5 md:py-10 rounded-lg flex flex-col items-center bg-accent border-4 ${selectedSpot?.area === spot.area && spot.available > 0 ? "border-green-600" : "border-transparent"}`}
+              style={{
+                gridColumn: index === 0 ? "1" : index === 1 ? "3" : index === 2 ? "5" : index === 3 ? "2" : index === 4 ? "4" : "",
+                gridRow: index < 3 ? "1" : index < 5 ? "2" : "",
+              }}
+              onClick={() => selectSpot(spot)}
+            >
               <span>{spot.area}</span>
-              <span>{spot.available === 0 ? "UDSOLGT" : `${spot.available} ud af ${spot.spots} pladser tilbage`}</span>
+              <span className="text-gray-400">{spot.available === 0 ? "UDSOLGT" : `${spot.available} pladser tilbage`}</span>
             </button>
           ))}
         </div>
       )}
-      <h3>Choose Tent Options</h3>
-      <div className="flex flex-col gap-4">
-        {/* 2-Person Tent */}
-        <div className="flex gap-10 bg-accent max-w-56 px-5 py-3 rounded-lg justify-between">
-          <h3>2-Person Tent ({tentPrices["2-person"]},-)</h3>
-          <div className="flex gap-2">
-            <button onClick={() => decreaseTent("2-person")}>-</button>
-            <span>{twoPersonTentCount}</span>
-            <button onClick={() => increaseTent("2-person")}>+</button>
+      <div className="justify-self-center mt-8">
+        <h3 className="bayon text-center">Tilkøb telte</h3>
+        <div className="flex flex-col gap-4">
+          <div className="w-full bayon flex gap-10  px-5 py-3 rounded-lg justify-between mb-3 self-start">
+            <h3>2 Personers telt {tentPrices["2-person"]},-</h3>
+            <div className="flex gap-2 px-2 rounded-lg border-2 border-black">
+              <button onClick={() => decreaseTent("2-person")}>-</button>
+              <span className="px-2 min-w-8 grid justify-items-center">{twoPersonTentCount}</span>
+              <button onClick={() => increaseTent("2-person")}>+</button>
+            </div>
           </div>
-        </div>
-        {/* 3-Person Tent */}
-        <div className="flex gap-10 bg-accent max-w-56 px-5 py-3 rounded-lg justify-between">
-          <h3>3-Person Tent ({tentPrices["3-person"]},-)</h3>
-          <div className="flex gap-2">
-            <button onClick={() => decreaseTent("3-person")}>-</button>
-            <span>{threePersonTentCount}</span>
-            <button onClick={() => increaseTent("3-person")}>+</button>
+
+          <div className="w-full bayon flex gap-10 px-5 py-3 rounded-lg justify-between mb-3 self-start">
+            <h3>3 Personers telt {tentPrices["3-person"]},-</h3>
+            <div className="flex gap-2 px-2 rounded-lg border-2 border-black">
+              <button onClick={() => decreaseTent("3-person")}>-</button>
+              <span className="px-2 min-w-8 grid justify-items-center">{threePersonTentCount}</span>
+              <button onClick={() => increaseTent("3-person")}>+</button>
+            </div>
           </div>
         </div>
       </div>
 
-      <div>
-        <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded" onClick={handleNextClick}>
-          Next
-        </button>
-        <button className="px-4 py-2 bg-gray-500 text-white rounded" onClick={handleBackClick}>
-          Back
-        </button>
+      <div className="flex justify-self-center gap-5">
+        <TicketFlowButton handleClick={handleBackClick} action="Tilbage" />
+        <TicketFlowButton handleClick={handleNextClick} action="Videre" />
       </div>
     </div>
   );

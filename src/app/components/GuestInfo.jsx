@@ -2,6 +2,7 @@
 import { useState } from "react";
 import useTicketStore from "../state/store";
 import { sendData } from "@/lib/actions";
+import TicketFlowButton from "./TicketFlowButton";
 
 const GuestInfo = ({ handleNextClick, handleBackClick, reservationId }) => {
   const { vipTickets, regularTickets } = useTicketStore();
@@ -15,6 +16,10 @@ const GuestInfo = ({ handleNextClick, handleBackClick, reservationId }) => {
     setGuestInfo(updatedGuestInfo);
   };
 
+  const isGuestComplete = (guest) => {
+    return guest.firstname.trim() && guest.lastname.trim() && guest.email.trim();
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await sendData(guestInfo, reservationId);
@@ -26,7 +31,7 @@ const GuestInfo = ({ handleNextClick, handleBackClick, reservationId }) => {
       <h1 className="text-center">Udfyld Information</h1>
       <form onSubmit={handleSubmit}>
         {guestInfo.map((guest, index) => (
-          <div key={index} className="mb-4 border p-4 rounded">
+          <div key={index} className={`mb-4 border-2 p-4 rounded ${isGuestComplete(guest) ? "border-green-500" : "border-accent"}`}>
             <h3>Guest {index + 1}</h3>
             <div className="flex flex-col gap-2">
               <label>
@@ -44,13 +49,9 @@ const GuestInfo = ({ handleNextClick, handleBackClick, reservationId }) => {
             </div>
           </div>
         ))}
-        <div>
-          <button type="submit" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
-            Next
-          </button>
-          <button className="px-4 py-2 bg-gray-500 text-white rounded" onClick={handleBackClick}>
-            Back
-          </button>
+        <div className="flex justify-self-center gap-5">
+          <TicketFlowButton handleClick={handleBackClick} action="Tilbage" />
+          <TicketFlowButton handleClick={handleNextClick} action="Videre" />
         </div>
       </form>
     </div>
