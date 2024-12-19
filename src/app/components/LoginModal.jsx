@@ -18,7 +18,7 @@ export default function LoginModal({ onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center ">
       <div className="bg-white p-6 rounded-lg shadow-lg">
         <h2 className="text-xl mb-4">Log ind</h2>
         <div className="mb-4">
