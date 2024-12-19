@@ -75,6 +75,7 @@ const TicketSystem = () => {
 
   return (
     <div>
+      {/* Timer fra ChatGPT*/}
       <div className={timer > 0 && currentStep !== 5 ? `border-2 border-black px-5 py-5 justify-self-start` : ""}>
         {timer > 0 && currentStep !== 5 ? (
           <p className="">
@@ -93,25 +94,21 @@ const TicketSystem = () => {
           <TicketSelector handleNextClick={handleNextClick} />
         </section>
       )}
-
       {currentStep === 2 && (
         <section>
           <CampingSelector handleNextClick={handleNextClick} handleBackClick={handleBackClick} />
         </section>
       )}
-
       {currentStep === 3 && (
         <section>
           <GuestInfo handleNextClick={handleNextClick} handleBackClick={handleBackClick} reservationId={reservationId} />
         </section>
       )}
-
       {currentStep === 4 && (
         <section>
           <Payment handleNextClick={handleNextClick} handleBackClick={handleBackClick} />
         </section>
       )}
-
       {currentStep === 5 && (
         <section>
           <ReservationComplete />

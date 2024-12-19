@@ -7,7 +7,7 @@ const TicketSelector = ({ handleNextClick }) => {
 
   const handleNext = () => {
     if (vipTickets === 0 && regularTickets === 0) {
-      alert("Please select at least one ticket before proceeding.");
+      alert("Venligst vælg mindst 1 billet før du går videre.");
     } else {
       handleNextClick();
     }
