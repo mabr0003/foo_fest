@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation";
 
 export default function FavoritesPage() {
   const [favorites, setFavorites] = useState([]);
-  const [isClient, setIsClient] = useState(false); // Track if component has mounted
+  const [isClient, setIsClient] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    setIsClient(true); // Set to true after the component mounts
+    setIsClient(true);
 
     if (isClient) {
       const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];

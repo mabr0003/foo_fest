@@ -7,7 +7,6 @@ import Image from "next/image";
 import useLoginStore from "@/app/state/login";
 import LoginModal from "@/app/components/LoginModal";
 
-// Map for day names
 const days = {
   mon: "Mandag",
   tue: "Tirsdag",
@@ -24,11 +23,11 @@ export default function BandPage() {
   const [schedule, setSchedule] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [isClient, setIsClient] = useState(false); // New state to track client-side rendering
+  const [isClient, setIsClient] = useState(false);
   const { isLoggedIn } = useLoginStore();
 
   useEffect(() => {
-    setIsClient(true); // This will ensure that localStorage is only used after mounting
+    setIsClient(true);
 
     async function fetchData() {
       try {

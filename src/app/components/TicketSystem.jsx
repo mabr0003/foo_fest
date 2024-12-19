@@ -17,6 +17,7 @@ const TicketSystem = () => {
   const { selectedSpot, vipTickets, regularTickets } = useTicketStore();
   const totalTickets = vipTickets + regularTickets;
 
+  // Timer fra ChatGPT
   useEffect(() => {
     let interval;
     if (timerStarted && timer > 0) {

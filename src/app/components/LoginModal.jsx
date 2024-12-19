@@ -1,17 +1,17 @@
 import { useState } from "react";
-import useLoginStore from "../state/login"; // Importér Zustand store
+import useLoginStore from "../state/login";
 
 export default function LoginModal({ onClose }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const setLogIn = useLoginStore((state) => state.setLogIn); // Brug setLogIn fra Zustand store
+  const setLogIn = useLoginStore((state) => state.setLogIn);
 
   const handleLogin = () => {
     if (username === "admin" && password === "password") {
-      setLogIn(); // Opdater login-statusen i Zustand
-      setError(""); // Nulstil fejlmeddelelsen
-      onClose(); // Luk modalvinduet ved at kalde onClose
+      setLogIn();
+      setError("");
+      onClose();
     } else {
       setError("Forkert brugernavn eller kodeord");
     }

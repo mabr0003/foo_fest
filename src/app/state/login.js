@@ -4,14 +4,14 @@ import { persist } from "zustand/middleware";
 const useLoginStore = create(
   persist(
     (set) => ({
-      isLoggedIn: false, // Standard værdi
+      isLoggedIn: false,
 
       setLogIn: () => set({ isLoggedIn: true }),
       setLogOut: () => set({ isLoggedIn: false }),
     }),
     {
-      name: "login-storage", // Navn på localStorage key
-      partialize: (state) => ({ isLoggedIn: state.isLoggedIn }), // Gem kun login-status
+      name: "login-storage",
+      partialize: (state) => ({ isLoggedIn: state.isLoggedIn }),
     }
   )
 );

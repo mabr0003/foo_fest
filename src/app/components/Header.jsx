@@ -16,7 +16,7 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    setLogOut(); // Log ud
+    setLogOut();
   };
 
   const handleFavoriteClick = (e) => {

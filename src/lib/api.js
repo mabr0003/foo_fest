@@ -74,8 +74,8 @@ export async function reserveSpot(area, amount) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      area: area, // Use the 'area' parameter
-      amount: amount, // Use the 'amount' parameter
+      area: area,
+      amount: amount,
     }),
   });
 
