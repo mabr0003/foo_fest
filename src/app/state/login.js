@@ -1,21 +1,19 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-const useLoginStore = create((set) => ({
-  isLoggedIn: false, // Default to false, will be updated later by a component
+const useLoginStore = create(
+  persist(
+    (set) => ({
+      isLoggedIn: false, // Standard værdi
 
-  setLogIn: () => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("isLoggedIn", "true");
+      setLogIn: () => set({ isLoggedIn: true }),
+      setLogOut: () => set({ isLoggedIn: false }),
+    }),
+    {
+      name: "login-storage", // Navn på localStorage key
+      partialize: (state) => ({ isLoggedIn: state.isLoggedIn }), // Gem kun login-status
     }
-    set({ isLoggedIn: true });
-  },
-
-  setLogOut: () => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("isLoggedIn", "false");
-    }
-    set({ isLoggedIn: false });
-  },
-}));
+  )
+);
 
 export default useLoginStore;
