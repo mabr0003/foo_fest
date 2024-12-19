@@ -108,7 +108,7 @@ export default function BandPage() {
           <span>Genre: {band?.genre}</span>
           <p className="mt-6 max-w-prose">{band?.bio}</p>
 
-          <button onClick={handleToggleFavorite} className={`mt-4 ${isFavorite ? "bg-red-500" : "bg-blue-500"} text-white px-4 py-2 rounded`}>
+          <button onClick={handleToggleFavorite} className={`mt-4 ${isFavorite ? "border-2 border-red-700 px-4 py-2 rounded-lg" : "px-4 py-2 border-2 border-black rounded-lg"}`}>
             {isFavorite ? "Fjern fra favoritter" : "Føj til favoritter"}
           </button>
         </div>

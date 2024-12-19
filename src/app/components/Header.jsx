@@ -1,18 +1,18 @@
 "use client";
 import { useState } from "react";
-import useLoginStore from "../state/login"; // Zustand store
-import LoginModal from "./LoginModal"; // Din LoginModal komponent
+import useLoginStore from "../state/login";
+import LoginModal from "./LoginModal";
 
 const Header = () => {
-  const isLoggedIn = useLoginStore((state) => state.isLoggedIn); // Hent login-status
-  const setLogIn = useLoginStore((state) => state.setLogIn); // Log ind
-  const setLogOut = useLoginStore((state) => state.setLogOut); // Log ud
+  const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
+  const setLogIn = useLoginStore((state) => state.setLogIn);
+  const setLogOut = useLoginStore((state) => state.setLogOut);
 
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal status
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleLoginSuccess = () => {
-    setLogIn(); // Opdater login-statusen
-    setIsModalOpen(false); // Luk modal'en
+    setLogIn();
+    setIsModalOpen(false);
   };
 
   const handleLogout = () => {
@@ -20,45 +20,36 @@ const Header = () => {
   };
 
   const handleFavoriteClick = (e) => {
-    // Forhindre standardnavigation, hvis ikke logget ind
     if (!isLoggedIn) {
-      e.preventDefault(); // Stopper linket fra at navigere
-      setIsModalOpen(true); // Åbn login modal
+      e.preventDefault();
+      setIsModalOpen(true);
     }
-    // Hvis brugeren er logget ind, kan linket navigere til favoritter
   };
 
   return (
     <div>
-      <div className="fixed top-0 left-0 w-full bg-white shadow-md z-50 flex justify-between items-center px-4 h-28">
-        <img src="/img2.png" alt="logo" className="col-start-1 row-start-1 w-28 h-28 z-20" />
+      <div className="bayon fixed top-0 left-0 w-full bg-prime shadow-md z-50 flex justify-between items-center px-4 h-28">
+        <a href="/">
+          <img src="/img2.png" alt="logo" className="col-start-1 row-start-1 w-28 h-28 z-20" />
+        </a>
 
         <div className="flex space-x-12">
-          {/* Link til favoritter */}
           <a href="/favourites" className="flex items-center text-black font-normal text-lg hover:text-gray-300" onClick={handleFavoriteClick}>
             Favoritter
           </a>
 
-          {/* Knap til login eller sign-out afhængig af login-status */}
           <div className="flex items-center space-x-4">
             {!isLoggedIn ? (
-              <button
-                className="bg-blue-500 text-white px-4 py-2 rounded"
-                onClick={() => setIsModalOpen(true)} // Åbn modal ved klik
-              >
+              <button className="px-4 py-2 border-2 border-black rounded-lg" onClick={() => setIsModalOpen(true)}>
                 Log ind
               </button>
             ) : (
-              <button
-                className="bg-red-500 text-white px-4 py-2 rounded"
-                onClick={handleLogout} // Log ud ved klik
-              >
+              <button className="border-2 border-red-700 px-4 py-2 rounded-lg" onClick={handleLogout}>
                 Sign out
               </button>
             )}
           </div>
 
-          {/* Login modal */}
           {isModalOpen && !isLoggedIn && <LoginModal onClose={() => setIsModalOpen(false)} onLoginSuccess={handleLoginSuccess} />}
         </div>
       </div>

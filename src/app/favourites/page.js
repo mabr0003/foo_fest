@@ -47,8 +47,6 @@ export default function FavoritesPage() {
                 {band.name}
               </a>
               <p className="text-sm text-gray-500">{band.genre}</p>
-              <p className="text-sm text-gray-500">Tidspunkt: {band.time}</p>
-              <p className="text-sm text-gray-500">Scene: {band.stage}</p>
             </div>
             <button onClick={() => removeFromFavorites(band.slug)} className="bg-red-500 text-white px-4 py-2 rounded">
               Fjern

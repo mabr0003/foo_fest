@@ -29,7 +29,6 @@ const LineUpSchedule = () => {
     { id: "sun", label: "Søndag" },
   ];
 
-  // Function to determine which bands play on the selected day
   const getBandsForSelectedDay = () => {
     const bandsPlayingToday = new Set();
     for (const sceneSchedule of Object.values(schedule)) {
@@ -46,7 +45,7 @@ const LineUpSchedule = () => {
         <section className="line_ups">
           <div className="mb-10 grid">
             <h2 className="text-center">Line-ups</h2>
-            <div className="bayon grid grid-cols-7 grid-rows-2 m-auto justify-items-center weekdays">
+            <div className="bayon flex flex-col gap-3 md:grid grid-cols-7 grid-rows-2 m-auto md:justify-items-center weekdays text-xl border-b-2 border-black py-3">
               {weekdays.map((day) => (
                 <button key={day.id} onClick={() => setSelectedDay(day.id)} className={`${selectedDay === day.id ? "button_container button_dot" : ""}`}>
                   {day.label}
@@ -66,7 +65,7 @@ const LineUpSchedule = () => {
 
         <section className="grid">
           <h2 className="text-center">Program</h2>
-          <div className="bayon grid grid-cols-7 grid-rows-2 m-auto justify-items-center weekdays">
+          <div className="bayon flex flex-col gap-3 md:grid grid-cols-7 grid-rows-2 m-auto md:justify-items-center weekdays text-xl border-b-2 border-black py-3">
             {weekdays.map((day, index) => (
               <button key={day.id} onClick={() => setSelectedDay(day.id)} className={`${index < 4 ? `row-start-1` : `row-start-2`} ${selectedDay === day.id ? "button_container button_dot" : ""}`}>
                 {day.label}

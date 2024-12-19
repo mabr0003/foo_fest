@@ -8,6 +8,7 @@ module.exports = {
         foreground: "var(--foreground)",
         accent: "var(--accent)",
         trans: "var(--transparant-bg)",
+        prime: "rgba(185, 255, 242, 1)",
       },
     },
   },
