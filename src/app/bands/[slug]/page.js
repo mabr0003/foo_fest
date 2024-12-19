@@ -95,7 +95,7 @@ export default function BandPage() {
 
   return (
     <div>
-      <div className="grid grid-cols-2 p-20">
+      <div className="md:grid grid-cols-2 p-20 gap-5">
         <div>
           <h1>{band?.name}</h1>
           <div>
@@ -106,7 +106,7 @@ export default function BandPage() {
             </ul>
           </div>
           <span>Genre: {band?.genre}</span>
-          <p className="mt-6 w-2/3">{band?.bio}</p>
+          <p className="mt-6 max-w-prose">{band?.bio}</p>
 
           <button onClick={handleToggleFavorite} className={`mt-4 ${isFavorite ? "bg-red-500" : "bg-blue-500"} text-white px-4 py-2 rounded`}>
             {isFavorite ? "Fjern fra favoritter" : "Føj til favoritter"}
